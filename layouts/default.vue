@@ -1,10 +1,6 @@
 <template>
-  <v-app>
-    <v-main>
-      <v-container>
-        <Nuxt></Nuxt>
-      </v-container>
-    </v-main>
+  <v-app class="matrix-app">
+    <Nuxt></Nuxt>
   </v-app>
 </template>
 

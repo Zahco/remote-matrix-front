@@ -1,17 +1,18 @@
 <template>
-  <div>
-    <h1 class="text-h4">Remote Matrix</h1>
-    <v-stepper v-model="step">
-      <v-stepper-items>
-        <v-stepper-content step="1">
-          <ip-form />
-        </v-stepper-content>
-        <v-stepper-content step="2">
-          <matrix-form />
-        </v-stepper-content>
-      </v-stepper-items>
-    </v-stepper>
-  </div>
+  <v-main class="ip-step">
+    <v-container>
+      <v-stepper v-model="step">
+        <v-stepper-items>
+          <v-stepper-content step="1">
+            <ip-form @connexionVerified="onConnexionVerified" />
+          </v-stepper-content>
+          <v-stepper-content step="2">
+            <matrix-form />
+          </v-stepper-content>
+        </v-stepper-items>
+      </v-stepper>
+    </v-container>
+  </v-main>
 </template>
 
 <script>
@@ -32,12 +33,9 @@ export default {
       ip: 'ip/getIp',
     })
   },
-  watch: {
-    ip: {
-      handler () {
-        this.step = this.ip ? 2 : 1
-      },
-      immediate: true
+  methods: {
+    onConnexionVerified () {
+      this.step = 2
     }
   }
 }

@@ -53,6 +53,21 @@ export default {
     }
   },
 
+  vuetify: {
+    customVariables: ['~/assets/sass/variables.scss'],
+    treeShake: true,
+    theme: {
+      themes: {
+        light: {
+          primary: '#6E0D25'
+        }
+      }
+    },
+    icons: {
+      iconfont: 'fa',
+    }
+  },
+
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
   }

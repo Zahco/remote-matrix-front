@@ -1,15 +1,12 @@
-export const state = () => ({
-  ip: null,
-})
   
 export const getters = {
   getIp: (state) => {
-    return state.ip
+    return localStorage.getItem('remote-ip')
   }
 }
 
 export const mutations = {
   setIp (state, ip) {
-    state.ip = ip
+    localStorage.setItem('remote-ip', ip)
   }
 }
