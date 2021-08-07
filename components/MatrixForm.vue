@@ -21,7 +21,7 @@
       class="mr-4 mb-4"
       type="button"
       color="secondary"
-      @click="clearMatrix"
+      @click="hardClearMatrix"
     >
       Clear
     </v-btn>
@@ -43,6 +43,7 @@
 <script>
 import Matrix from '~/components/Matrix.vue'
 import alpha from '~/plugins/alpha'
+import { mapGetters } from 'vuex'
 
 export default {
   components: { Matrix },
@@ -56,6 +57,11 @@ export default {
       word: ''
     }
   },
+  computed: {
+    ...mapGetters({
+      ip: 'ip/getIp',
+    })
+  },
   watch: {
     word () {
       this.updateMatrixByWord()
@@ -68,10 +74,13 @@ export default {
     onSubmit () {
       this.loading = true
       this.success = false
-      setTimeout(() => {
-        this.loading = false
+      this.$axios.$post(`http://${this.ip}/matrix/api/matrix/state`, { matrix: this.matrix }).then((res) => {
         this.success = true
-      }, 2000)
+      }).catch((err) => {
+        this.error = err.message
+      }).finally(() => {
+        this.loading = false
+      })
     },
     generateMatrix(line = 8, row = 16) {
       let matrix = []
@@ -83,6 +92,9 @@ export default {
         matrix.push(line)
       }
       return matrix
+    },
+    hardClearMatrix () {
+      this.matrix = this.generateMatrix()
     },
     clearMatrix () {
       for (let i = 0; i < this.matrix.length; ++i) {
@@ -98,6 +110,14 @@ export default {
         let submatrix = alpha.getMatrix(this.word[c].toLowerCase())
         let maxRow = this.printSubMatrix(submatrix, offset)
         offset += maxRow + 2
+      }
+      // Remove null value
+      for (let i = 0; i < this.matrix.length; ++i) {
+        for (let j = 0; j < this.matrix[i].length; ++j) {
+          if (this.matrix[i][j] === null || this.matrix[i][j] === undefined) {
+            this.$set(this.matrix[i], j, false)
+          }
+        }
       }
     },
     printSubMatrix(matrix, offset) {

@@ -60,18 +60,18 @@ export default {
       setIp: 'ip/setIp',
     }),
     submit () {
-      // this.loading = true
-      // this.error = false
-      // this.$axios.$get(`http://${this.ip}/matrix/api/ping`).then(() => {
-      //   this.setIp(this.ip)
-      //   this.$emit("connexionVerified", this.ip)
-      // }).catch((err) => {
-      //   this.error = err.message
-      // }).finally(() => {
-      //   this.loading = false
-      // })
-      this.setIp(this.ip)
-      this.$emit("connexionVerified", this.ip)
+      this.loading = true
+      this.error = false
+      this.$axios.$get(`http://${this.ip}/matrix/api/ping`).then(() => {
+        this.setIp(this.ip)
+        this.$emit("connexionVerified", this.ip)
+      }).catch((err) => {
+        this.error = err.message
+      }).finally(() => {
+        this.loading = false
+      })
+      // this.setIp(this.ip)
+      // this.$emit("connexionVerified", this.ip)
     }
   }
 }

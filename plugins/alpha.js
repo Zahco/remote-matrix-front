@@ -10,14 +10,14 @@ const letters = {
         [true, false, false, true]
     ],
     'b': [
-        [true, true, true, true],
+        [true, true, true, false],
         [true, false, false, true],
         [true, false, false, true],
         [true, true, true, false],
         [true, false, false, true],
         [true, false, false, true],
         [true, false, false, true],
-        [true, true, true, true]
+        [true, true, true, false]
     ],
     'c': [
         [true, true, true],
