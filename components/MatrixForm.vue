@@ -82,7 +82,7 @@ export default {
         this.loading = false
       })
     },
-    generateMatrix(line = 8, row = 16) {
+    generateMatrix(line = 8, row = 64) {
       let matrix = []
       for (let i = 0; i < line; ++i) {
         let line = []
