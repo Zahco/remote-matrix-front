@@ -1,6 +1,6 @@
 <template>
   <v-main class="ip-step">
-    <v-container>
+    <v-container class="page-container">
       <v-stepper v-model="step">
         <v-stepper-items>
           <v-stepper-content step="1">

@@ -15,7 +15,7 @@
     </div> -->
     <v-text-field
       v-model="word"
-      label="Mot"
+      label="Text"
     ></v-text-field>
     <v-btn
       class="mr-4 mb-4"
@@ -32,21 +32,23 @@
       :disabled="!valid || loading"
       :loading="loading"
     >
-      Envoyer
+      Send
     </v-btn>
     <v-alert type="success" v-if="success">
       The matrix has been updated
     </v-alert>
+    <DevMode />
   </v-form>
 </template>
 
 <script>
 import Matrix from '~/components/Matrix.vue'
+import DevMode from '~/components/devMode/DevMode.vue'
 import alpha from '~/plugins/alpha'
 import { mapGetters } from 'vuex'
 
 export default {
-  components: { Matrix },
+  components: { Matrix, DevMode },
   data () {
     return {
       valid: false,
